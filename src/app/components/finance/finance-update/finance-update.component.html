@@ -1,0 +1,81 @@
+<mat-card>
+    <mat-card-title>
+        Atualizar Registro
+    </mat-card-title>
+    <form action="">
+        <div>
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Data de referência</mat-label>
+                <input 
+                    matInput [ngxMatDatetimePicker]="pickerRef" 
+                    [(ngModel)]="finance.data_de_referencia" 
+                    placeholder="Insira a data" 
+                    name="data_de_referencia">
+                <mat-hint>dd/mm/aaaa hh:mm:ss</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="$any(pickerRef)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #pickerRef color="primary" [showSeconds]="true"></ngx-mat-datetime-picker>
+            </mat-form-field>
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Data do evento</mat-label>
+                <input 
+                    matInput [ngxMatDatetimePicker]="pickerEvent" 
+                    placeholder="Insira a data" 
+                    [(ngModel)]="finance.data_do_evento" 
+                    name="data_do_evento">
+                <mat-hint>dd/mm/aaaa hh:mm:ss</mat-hint>            
+                <mat-datepicker-toggle matSuffix [for]="$any(pickerEvent)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #pickerEvent color="accent" [showSeconds]="true"></ngx-mat-datetime-picker>
+            </mat-form-field>
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Data do pagamento</mat-label>
+                <input 
+                    matInput [ngxMatDatetimePicker]="pickerPay" 
+                    placeholder="Insira a data" 
+                    [(ngModel)]="finance.data_do_pagamento" 
+                    name="data_do_pagamento">
+                <mat-hint>dd/mm/aaaa hh:mm:ss</mat-hint>            
+                <mat-datepicker-toggle matSuffix [for]="$any(pickerPay)"></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #pickerPay color="warn" [showSeconds]="true"></ngx-mat-datetime-picker>
+            </mat-form-field>
+        </div>        
+        <mat-form-field appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <input matInput [(ngModel)]="finance.descricao" name="descricao">
+        </mat-form-field>   
+        <mat-form-field appearance="fill">
+            <mat-label>Nota</mat-label>
+            <textarea matInput [(ngModel)]="finance.nota" name="nota"></textarea>
+        </mat-form-field> 
+        <div fxLayout="row wrap">
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Grupo</mat-label>
+                <input matInput [(ngModel)]="finance.grupo" name="grupo">
+            </mat-form-field>   
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Status</mat-label>
+                <input matInput [(ngModel)]="finance.status" name="status">
+            </mat-form-field>   
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Instituição financeira</mat-label>
+                <input matInput [(ngModel)]="finance.instituicao_financeira" name="instituicao_financeira">
+            </mat-form-field>   
+        </div>      
+        <div>
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Renda</mat-label>
+                <input matInput [(ngModel)]="finance.renda" name="renda">
+            </mat-form-field>   
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Gastos</mat-label>
+                <input matInput [(ngModel)]="finance.gastos" name="gastos">
+            </mat-form-field>   
+        </div>
+    </form>
+    <button mat-raised-button (click)="updateFinance()" color="accent">
+        Atualizar
+    </button>
+    
+    <button mat-raised-button (click)="cancel()">
+        Cancelar
+    </button>
+</mat-card>

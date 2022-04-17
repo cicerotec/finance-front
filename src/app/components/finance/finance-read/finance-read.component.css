@@ -1,0 +1,27 @@
+table {
+    width: 100%;
+}
+
+th, td {
+    font-size: 0.6rem;
+    padding: 2rem;
+}
+
+.mat-stroked-button {
+    font-size: 0.6rem;
+    margin: 6px 8px 6px 8px;   
+}
+
+.edit {
+    margin-right: 5px;
+}
+
+.edit > i {
+    color: #dbb81d;
+    font-size: 1rem;  
+}
+
+.delete > i {
+    color: #ca182a;
+    font-size: 1rem;      
+}
