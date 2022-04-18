@@ -4,7 +4,14 @@ table {
 
 th, td {
     font-size: 0.6rem;
-    padding: 2rem;
+}
+
+tr:hover {
+    background-color: grey;
+}
+
+.data {
+    width: 60px;
 }
 
 .mat-stroked-button {

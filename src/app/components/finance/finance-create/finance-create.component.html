@@ -63,11 +63,11 @@
         <div>
             <mat-form-field class="data" appearance="fill">
                 <mat-label>Renda</mat-label>
-                <input matInput [(ngModel)]="finance.renda" name="renda">
+                <input matInput [(ngModel)]="finance.renda" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="renda">
             </mat-form-field>   
             <mat-form-field class="data" appearance="fill">
                 <mat-label>Gastos</mat-label>
-                <input matInput [(ngModel)]="finance.gastos" name="gastos">
+                <input matInput [(ngModel)]="finance.gastos" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="gastos">
             </mat-form-field>   
         </div>
     </form>

@@ -42,6 +42,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { FinanceUpdateComponent } from './components/finance/finance-update/finance-update.component';
 import { FinanceDeleteComponent } from './components/finance/finance-delete/finance-delete.component';
 
+import { CurrencyMaskModule } from "ng2-currency-mask";
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -82,7 +84,8 @@ registerLocaleData(localePt);
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     ReactiveFormsModule,
-    MatTooltipModule    
+    MatTooltipModule,
+    CurrencyMaskModule
   ],
   providers: [{
     provide: LOCALE_ID,
