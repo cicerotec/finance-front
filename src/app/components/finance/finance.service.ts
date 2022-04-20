@@ -23,6 +23,7 @@ export class FinanceService {
   }
 
   create(finance: Finance): Observable<Finance> {
+    console.log(finance)
     return this.http.post<Finance>(this.baseUrl, finance)
   }
 
@@ -36,6 +37,7 @@ export class FinanceService {
   }  
 
   update(finance: Finance): Observable<Finance> {
+    console.log(finance)    
     const url = `${this.baseUrl}/${finance.id}`
     return this.http.put<Finance>(url, finance);
   }

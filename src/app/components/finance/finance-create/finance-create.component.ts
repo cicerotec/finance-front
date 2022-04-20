@@ -34,7 +34,7 @@ export class FinanceCreateComponent implements OnInit {
   createFinance(): void {
     this.financeService.create(this.finance).subscribe(() => {
       this.financeService.showMessage('Evento registrado!')
-      this.router.navigate(['/finances'])
+      this.router.navigate(['/'])
     })
   }
 

@@ -44,6 +44,8 @@ import { FinanceDeleteComponent } from './components/finance/finance-delete/fina
 
 import { CurrencyMaskModule } from "ng2-currency-mask";
 
+import { MatIconModule } from '@angular/material/icon';
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -85,7 +87,8 @@ registerLocaleData(localePt);
     NgxMatNativeDateModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    MatIconModule
   ],
   providers: [{
     provide: LOCALE_ID,

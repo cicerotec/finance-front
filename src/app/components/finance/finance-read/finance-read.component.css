@@ -6,17 +6,20 @@ th, td {
     font-size: 0.6rem;
 }
 
-tr:hover {
-    background-color: grey;
+.id > i {
+    margin-top: 8px;
+    width: 20px;
+    color: white;
+    font-size: 0.8rem;
 }
 
-.data {
+.datas {
     width: 60px;
 }
 
 .mat-stroked-button {
     font-size: 0.6rem;
-    margin: 6px 8px 6px 8px;   
+    margin: 6px 8px 6px 8px; 
 }
 
 .edit {
@@ -25,10 +28,10 @@ tr:hover {
 
 .edit > i {
     color: #dbb81d;
-    font-size: 1rem;  
+    font-size: 0.8rem;  
 }
 
 .delete > i {
     color: #ca182a;
-    font-size: 1rem;      
+    font-size: 0.8rem;      
 }
