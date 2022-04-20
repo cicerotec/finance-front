@@ -46,6 +46,8 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { MatIconModule } from '@angular/material/icon';
 
+import { MatSelectModule } from '@angular/material/select';
+
 registerLocaleData(localePt);
 
 @NgModule({
@@ -88,7 +90,8 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     MatTooltipModule,
     CurrencyMaskModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [{
     provide: LOCALE_ID,

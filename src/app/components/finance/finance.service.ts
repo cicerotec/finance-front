@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FinanceService {
 
   baseUrl = "http://localhost:8080/finance/controles-financeiros"
@@ -15,7 +16,7 @@ export class FinanceService {
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
   showMessage(msg: string): void {
-    this.snackBar.open(msg, 'X', {
+    this.snackBar.open(msg, '', {
       duration: 3000,
       horizontalPosition: "center",
       verticalPosition: "top"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Finance } from './../finance.model';
 import { FinanceService } from './../finance.service';
 import { Router } from '@angular/router';
+import { ConteudoService } from '../../conteudo/conteudo.service';
 
 @Component({
   selector: 'app-finance-create',
@@ -24,11 +25,16 @@ export class FinanceCreateComponent implements OnInit {
     tags: ''
   }
 
-
   constructor(private financeService: FinanceService,
-    private router: Router) { }
+    private router: Router, private conteudoService: ConteudoService) { }
+
+    status : any[] = [];
+    displayedColumns = ['id','valor'];
+  
+    dataSource=this.status;    
 
   ngOnInit(): void {
+    this.getStatus()
   }
 
   createFinance(): void {
@@ -40,6 +46,15 @@ export class FinanceCreateComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/finances'])
+  }
+
+  getStatus() {
+    this.conteudoService.readByTipo('status').subscribe((status:any) => {
+      this.status = status
+      console.log(status)
+    }, error => {
+      console.log({ error })
+    })
   }
 
 }

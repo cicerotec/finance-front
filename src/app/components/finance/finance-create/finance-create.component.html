@@ -51,10 +51,24 @@
                 <mat-label>Grupo</mat-label>
                 <input matInput [(ngModel)]="finance.grupo" name="grupo">
             </mat-form-field>   
+
+            
+            <mat-form-field class="data" appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select >
+                    <mat-option *ngFor="let s of status" [value]="s.valor">
+                                   {{ s.valor }}
+                      </mat-option>
+               </mat-select>
+            </mat-form-field>   
+
+            <!--
             <mat-form-field class="data" appearance="fill">
                 <mat-label>Status</mat-label>
                 <input matInput [(ngModel)]="finance.status" name="status">
             </mat-form-field>   
+            -->
+
             <mat-form-field class="data" appearance="fill">
                 <mat-label>Instituição financeira</mat-label>
                 <input matInput [(ngModel)]="finance.instituicao_financeira" name="instituicao_financeira">
