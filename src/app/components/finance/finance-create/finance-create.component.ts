@@ -29,12 +29,19 @@ export class FinanceCreateComponent implements OnInit {
     private router: Router, private conteudoService: ConteudoService) { }
 
     status : any[] = [];
-    displayedColumns = ['id','valor'];
-  
-    dataSource=this.status;    
-
+    instituicoes : any[] = [];
+    grupos : any[] = [];
+ 
   ngOnInit(): void {
-    this.getStatus()
+    this.conteudoService.readByTipo('status').subscribe((status:any) => {
+      this.status = status
+    })
+    this.conteudoService.readByTipo('instituicao').subscribe((instituicoes:any) => {
+      this.instituicoes = instituicoes
+    })
+    this.conteudoService.readByTipo('grupo').subscribe((grupos:any) => {
+      this.grupos = grupos
+    })    
   }
 
   createFinance(): void {
@@ -46,15 +53,6 @@ export class FinanceCreateComponent implements OnInit {
 
   cancel(): void {
     this.router.navigate(['/finances'])
-  }
-
-  getStatus() {
-    this.conteudoService.readByTipo('status').subscribe((status:any) => {
-      this.status = status
-      console.log(status)
-    }, error => {
-      console.log({ error })
-    })
   }
 
 }

@@ -6,6 +6,15 @@ th, td {
     font-size: 0.6rem;
 }
 
+.mat-card-title {
+    font-size: 0.8rem!important;
+}
+
+.mat-form-field {
+    font-size: 0.8rem!important;
+    margin-right: 30px;
+}
+
 .id > i {
     margin-top: 8px;
     width: 20px;

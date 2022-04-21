@@ -14,7 +14,7 @@ export class ConteudoService {
   findByTipo = this.baseUrl + "/tipo"
 
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
-
+  
   showMessage(msg: string): void {
     this.snackBar.open(msg, '', {
       duration: 3000,
@@ -37,9 +37,9 @@ export class ConteudoService {
     return this.http.get<Conteudo>(url);
   }  
 
-  readByTipo(tipo: string | null): Observable<Conteudo> {
+  readByTipo(tipo: string | null): Observable<any[]> {
     const url = `${this.findByTipo}/${tipo}`
-    return this.http.get<any>(url);
+    return this.http.get<any[]>(url);
   }  
 
   update(conteudo: Conteudo): Observable<Conteudo> {
