@@ -7,17 +7,22 @@
 
           <mat-form-field appearance="outline">
             <mat-label>Id</mat-label>
-            <input matInput placeholder="Insira o id" >
-            
-            <mat-icon matSuffix>search</mat-icon>
+            <input matInput placeholder="Insira o id" name="id" [(ngModel)]="id">
+            <button matSuffix mat-button (click)="searchId()">
+              <mat-icon matSuffix>search</mat-icon>
+            </button>            
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Mes / Ano</mat-label>
-            <input matInput placeholder="Insira o mes e ano" >
-            <mat-icon matSuffix>search</mat-icon>
-            <mat-hint>mm/aaaa</mat-hint>
-          </mat-form-field>
+            <mat-label>Data de referência</mat-label>
+            <mat-date-range-input [rangePicker]="pickerRef">
+              <input matStartDate placeholder="Inicial">
+              <input matEndDate placeholder="Final">
+            </mat-date-range-input>
+            <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
+            <mat-date-range-picker #pickerRef></mat-date-range-picker>
+          </mat-form-field>          
   </div>
 </mat-card>
   <div>

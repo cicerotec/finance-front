@@ -34,6 +34,7 @@ export class FinanceService {
 
   readById(id: string | null): Observable<Finance> {
     const url = `${this.baseUrl}/${id}`
+    console.log(url)
     return this.http.get<Finance>(url);
   }  
 
@@ -45,6 +46,7 @@ export class FinanceService {
 
   delete(id: string | null): Observable<Finance> {
     const url = `${this.baseUrl}/${id}`
+    console.log(url)    
     return this.http.delete<Finance>(url);
   }
 
