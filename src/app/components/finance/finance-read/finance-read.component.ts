@@ -41,10 +41,9 @@ export class FinanceReadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.financeService.read().subscribe(finances => {
-      this.finances = finances
-      console.log(finances)
-    })
+    this.data_de_referencia = this.getFirstDayOfMonth()
+    this.data_de_referencia_final = this.getLastDayOfMonth()
+    this.searchDataReferencia()
   }
 
   searchId(): void {
@@ -79,5 +78,34 @@ export class FinanceReadComponent implements OnInit {
       })
     }
   }  
+
+  getFirstDayOfMonth(): Date {
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    return firstDay
+  }
+
+  getLastDayOfMonth(): Date {
+    let date = new Date(), y = date.getFullYear(), m = date.getMonth();
+    let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);    
+    return lastDay
+  }
+  
+  monthForward(): void {
+    this.data_de_referencia = new Date(this.data_de_referencia.getFullYear(), this.data_de_referencia.getMonth() + 1, 1)
+    this.data_de_referencia_final = new Date(this.data_de_referencia_final.getFullYear(), this.data_de_referencia_final.getMonth() + 2, 0)
+    console.log("monthForward data inicial "+this.data_de_referencia)
+    console.log("monthForward data final "+this.data_de_referencia)
+    this.searchDataReferencia()
+  }
+
+  monthBackward(): void {
+    this.data_de_referencia = new Date(this.data_de_referencia.getFullYear(), this.data_de_referencia.getMonth() - 1, 1)
+    this.data_de_referencia_final = new Date(this.data_de_referencia_final.getFullYear(), this.data_de_referencia_final.getMonth(), 0)
+    console.log("monthBackward data inicial "+this.data_de_referencia)
+    console.log("monthBackward data final "+this.data_de_referencia)    
+    this.searchDataReferencia()
+  }
+
 
 }
