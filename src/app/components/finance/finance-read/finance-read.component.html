@@ -6,7 +6,7 @@
   <div fxLayout="row" fxLayoutGap="10">
 
           <mat-form-field appearance="outline">
-            <mat-label>Id</mat-label>
+            <mat-label>Por id</mat-label>
             <input matInput placeholder="Insira o id" name="id" [(ngModel)]="id">
             <button matSuffix mat-button (click)="searchId()">
               <mat-icon matSuffix>search</mat-icon>
@@ -14,10 +14,10 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <mat-label>Data de referência</mat-label>
+            <mat-label>Por data de referência</mat-label>
             <mat-date-range-input [rangePicker]="pickerRef">
-              <input matStartDate placeholder="Inicial">
-              <input matEndDate placeholder="Final">
+              <input matStartDate placeholder="Inicial" [(ngModel)]="data_de_referencia" (dateChange)="searchDataReferencia()">
+              <input matEndDate placeholder="Final" [(ngModel)]="data_de_referencia_final" (dateChange)="searchDataReferencia()">
             </mat-date-range-input>
             <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>

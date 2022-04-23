@@ -1,5 +1,5 @@
 import { Finance } from './finance.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { Observable } from 'rxjs';
@@ -37,6 +37,10 @@ export class FinanceService {
     console.log(url)
     return this.http.get<Finance>(url);
   }  
+
+  readByParams(params: HttpParams): Observable<Finance[]> {
+    return this.http.get<Finance[]>(this.baseUrl, {params})
+  }
 
   update(finance: Finance): Observable<Finance> {
     console.log(finance)    
