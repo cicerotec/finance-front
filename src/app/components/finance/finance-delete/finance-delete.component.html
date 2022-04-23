@@ -4,7 +4,7 @@
     </mat-card-title>
     <form action="">
         <div>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Data de referência</mat-label>
                 <input 
                     matInput [ngxMatDatetimePicker]="pickerRef" 
@@ -16,7 +16,7 @@
                 <mat-datepicker-toggle matSuffix [for]="$any(pickerRef)"></mat-datepicker-toggle>
                 <ngx-mat-datetime-picker #pickerRef color="primary" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Data do evento</mat-label>
                 <input 
                     matInput [ngxMatDatetimePicker]="pickerEvent" 
@@ -28,7 +28,7 @@
                 <mat-datepicker-toggle matSuffix [for]="$any(pickerEvent)"></mat-datepicker-toggle>
                 <ngx-mat-datetime-picker #pickerEvent color="accent" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Data do pagamento</mat-label>
                 <input 
                     matInput [ngxMatDatetimePicker]="pickerPay" 
@@ -41,34 +41,34 @@
                 <ngx-mat-datetime-picker #pickerPay color="warn" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
         </div>        
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
             <input matInput [(ngModel)]="finance.descricao" name="descricao" disabled>
         </mat-form-field>   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Nota</mat-label>
             <textarea matInput [(ngModel)]="finance.nota" name="nota" disabled></textarea>
         </mat-form-field> 
         <div fxLayout="row wrap">
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Grupo</mat-label>
                 <input matInput [(ngModel)]="finance.grupo" name="grupo" disabled>
             </mat-form-field>   
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Status</mat-label>
                 <input matInput [(ngModel)]="finance.status" name="status" disabled>
             </mat-form-field>   
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Instituição financeira</mat-label>
                 <input matInput [(ngModel)]="finance.instituicao_financeira" name="instituicao_financeira" disabled>
             </mat-form-field>   
         </div>      
         <div>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Renda</mat-label>
                 <input matInput [(ngModel)]="finance.renda" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="renda" disabled>
             </mat-form-field>   
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Gastos</mat-label>
                 <input matInput [(ngModel)]="finance.gastos" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="gastos" disabled>
             </mat-form-field>   

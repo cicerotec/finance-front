@@ -10,7 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinanceDeleteComponent implements OnInit {
 
-  finance!: Finance;
+  finance : Finance = {
+    data_de_referencia: new Date,
+    data_do_evento: new Date,
+    data_do_pagamento: new Date,
+    descricao: '',
+    nota: '',
+    grupo: [],
+    instituicao_financeira: '',
+    renda: null,
+    gastos: null,
+    status: '',
+    tags: ''
+  }
 
   constructor(
     private financeService: FinanceService,

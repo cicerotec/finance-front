@@ -4,7 +4,7 @@
     </mat-card-title>
     <form action="">
         <div>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Data de referência</mat-label>
                 <input 
                     matInput [ngxMatDatetimePicker]="pickerRef" 
@@ -15,7 +15,7 @@
                 <mat-datepicker-toggle matSuffix [for]="$any(pickerRef)"></mat-datepicker-toggle>
                 <ngx-mat-datetime-picker #pickerRef color="primary" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Data do evento</mat-label>
                 <input 
                     matInput [ngxMatDatetimePicker]="pickerEvent" 
@@ -26,7 +26,7 @@
                 <mat-datepicker-toggle matSuffix [for]="$any(pickerEvent)"></mat-datepicker-toggle>
                 <ngx-mat-datetime-picker #pickerEvent color="accent" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Data do pagamento</mat-label>
                 <input 
                     matInput [ngxMatDatetimePicker]="pickerPay" 
@@ -38,40 +38,56 @@
                 <ngx-mat-datetime-picker #pickerPay color="warn" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
         </div>        
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
             <input matInput [(ngModel)]="finance.descricao" name="descricao">
         </mat-form-field>   
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label>Nota</mat-label>
             <textarea matInput [(ngModel)]="finance.nota" name="nota"></textarea>
         </mat-form-field> 
+
+        <!-- INICIO - CONTEUDOS DE LISTAS -->        
         <div fxLayout="row wrap">
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Grupo</mat-label>
-                <input matInput [(ngModel)]="finance.grupo" name="grupo">
+                <mat-select multiple [(ngModel)]="finance.grupo" [ngModelOptions]="{standalone: true}">
+                    <mat-option *ngFor="let grp of grupos" [value]="grp.valor">
+                                   {{ grp.valor }}
+                      </mat-option>
+               </mat-select>
             </mat-form-field>   
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Status</mat-label>
-                <input matInput [(ngModel)]="finance.status" name="status">
-            </mat-form-field>   
-            <mat-form-field class="data" appearance="fill">
+                <mat-select [(ngModel)]="finance.status" [ngModelOptions]="{standalone: true}">
+                    <mat-option *ngFor="let sts of status" [value]="sts.valor">
+                                   {{ sts.valor }}
+                      </mat-option>
+               </mat-select>
+            </mat-form-field>
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Instituição financeira</mat-label>
-                <input matInput [(ngModel)]="finance.instituicao_financeira" name="instituicao_financeira">
+                <mat-select [(ngModel)]="finance.instituicao_financeira" [ngModelOptions]="{standalone: true}">
+                    <mat-option *ngFor="let inst of instituicoes" [value]="inst.valor">
+                                   {{ inst.valor }}
+                      </mat-option>
+               </mat-select>
             </mat-form-field>   
-        </div>      
+        </div>  
+        <!-- FIM - CONTEUDOS DE LISTAS -->
+
         <div>
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Renda</mat-label>
                 <input matInput [(ngModel)]="finance.renda" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="renda">
             </mat-form-field>   
-            <mat-form-field class="data" appearance="fill">
+            <mat-form-field class="data" appearance="outline">
                 <mat-label>Gastos</mat-label>
                 <input matInput [(ngModel)]="finance.gastos" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="gastos">
             </mat-form-field>   
         </div>
     </form>
-    <button mat-raised-button (click)="updateFinance()" color="accent">
+    <button mat-raised-button (click)="updateFinance()" color="primary">
         Atualizar
     </button>
     
