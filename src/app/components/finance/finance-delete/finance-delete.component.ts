@@ -16,12 +16,12 @@ export class FinanceDeleteComponent implements OnInit {
     data_do_pagamento: new Date,
     descricao: '',
     nota: '',
-    grupo: [],
+    grupos: [],
     instituicao_financeira: '',
     renda: null,
     gastos: null,
     status: '',
-    tags: ''
+    tags: []
   }
 
   constructor(

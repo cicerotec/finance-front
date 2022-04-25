@@ -5,10 +5,10 @@ export interface Finance {
     data_do_pagamento: Date | null
     descricao: string
     nota: string | null
-    grupo: []
+    grupos: []
     instituicao_financeira: string
     renda: number | null
     gastos: number | null
     status: string
-    tags: string | null
+    tags: string[]
 }

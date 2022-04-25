@@ -42,6 +42,11 @@ export class ConteudoService {
     return this.http.get<any[]>(url);
   }  
 
+  readByTipoResultValor(tipo: string | null): Observable<string[]> {
+    const url = `${this.findByTipo}/${tipo}/valor`
+    return this.http.get<string[]>(url);
+  }  
+
   update(conteudo: Conteudo): Observable<Conteudo> {
     console.log(conteudo)    
     const url = `${this.baseUrl}/${conteudo.id}`

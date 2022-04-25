@@ -21,7 +21,7 @@ export class FinanceReadComponent implements OnInit {
     'data_do_pagamento', 
     'descricao', 
     'nota', 
-    'grupo', 
+    'grupos', 
     'instituicao_financeira',     
     'renda', 
     'gastos', 

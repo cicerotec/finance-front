@@ -51,7 +51,7 @@
         <div fxLayout="row wrap">
             <mat-form-field appearance="outline">
                 <mat-label>Grupo</mat-label>
-                <mat-select multiple [(ngModel)]="finance.grupo" [ngModelOptions]="{standalone: true}">
+                <mat-select multiple [(ngModel)]="finance.grupos" [ngModelOptions]="{standalone: true}">
                     <mat-option *ngFor="let grp of grupos" [value]="grp.valor">
                                    {{ grp.valor }}
                       </mat-option>

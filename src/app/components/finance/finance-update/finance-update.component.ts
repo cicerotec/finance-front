@@ -17,12 +17,12 @@ export class FinanceUpdateComponent implements OnInit {
     data_do_pagamento: new Date,
     descricao: '',
     nota: null,
-    grupo: [],
+    grupos: [],
     instituicao_financeira: '',
     renda: null,
     gastos: null,
     status: '',
-    tags: ''
+    tags: []
   }
   
   constructor(
