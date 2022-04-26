@@ -8,13 +8,13 @@
           <mat-form-field appearance="outline">
             <mat-label>Por id</mat-label>
             <input matInput placeholder="Insira o id" name="id" [(ngModel)]="id">
-            <button matSuffix mat-button (click)="searchId()" class="button">
+            <button matSuffix mat-button (click)="searchId()" class="pesquisa">
               <mat-icon matSuffix>search</mat-icon>
             </button>            
           </mat-form-field>
 
           <mat-form-field appearance="outline">
-            <button matSuffix mat-button class="button" (click)="monthBackward()" matTooltip="Pesquisa mês anterior">
+            <button matSuffix mat-button class="pesquisa" (click)="monthBackward()" matTooltip="Pesquisa mês anterior">
               <mat-icon>chevron_left</mat-icon>
             </button>
             <mat-label>Por data de referência</mat-label>
@@ -25,11 +25,11 @@
             <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
             <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
             <mat-date-range-picker #pickerRef></mat-date-range-picker>
-            <button matSuffix mat-button class="button" (click)="monthForward()" matTooltip="Pesquisa mês posterior"> 
+            <button matSuffix mat-button class="pesquisa" (click)="monthForward()" matTooltip="Pesquisa mês posterior"> 
               <mat-icon>chevron_right</mat-icon>
             </button>   
           </mat-form-field>
-       
+
   </div>
 </mat-card>
   <div>
@@ -75,7 +75,7 @@
       <ng-container matColumnDef="nota">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
-          <button mat-stroked-button matTooltip={{row.nota}} *ngIf="row.nota != null">nota</button>
+          <button mat-stroked-button class="nota" matTooltip={{row.nota}} *ngIf="row.nota != null">nota</button>
         </td>
       </ng-container>
 

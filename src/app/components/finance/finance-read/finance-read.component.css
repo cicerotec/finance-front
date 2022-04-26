@@ -6,7 +6,7 @@ th, td {
     font-size: 0.6rem;
 }
 
-.button {
+.pesquisa {
     width: 30px!important;
     min-width: unset!important;
     display: inline-flex;
@@ -34,9 +34,15 @@ th, td {
     width: 60px;
 }
 
-.mat-stroked-button {
+.nota {
     font-size: 0.6rem;
-    margin: 6px 8px 6px 8px; 
+    width: 30px!important;
+    min-width: unset!important;
+    height: 15px!important;
+    min-height: unset!important;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .edit {

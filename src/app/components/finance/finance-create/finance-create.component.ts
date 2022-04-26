@@ -26,7 +26,7 @@ export class FinanceCreateComponent implements OnInit {
     data_do_evento: new Date,
     data_do_pagamento: new Date,
     descricao: '',
-    nota: '',
+    nota: null,
     grupos: [],
     instituicao_financeira: '',
     renda: null,
