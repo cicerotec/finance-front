@@ -3,6 +3,8 @@
         Deletar Registro
     </mat-card-title>
     <form action="">
+
+        <!-- INICIO - DATAS -->          
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Data de referência</mat-label>
@@ -41,6 +43,9 @@
                 <ngx-mat-datetime-picker #pickerPay color="warn" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
         </div>        
+        <!-- FIM - DATAS -->         
+        
+        <!-- INICIO - DESCRIÇÃO | NOTA --> 
         <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
             <input matInput [(ngModel)]="finance.descricao" name="descricao" disabled>
@@ -49,6 +54,9 @@
             <mat-label>Nota</mat-label>
             <textarea matInput [(ngModel)]="finance.nota" name="nota" disabled></textarea>
         </mat-form-field> 
+        <!-- FIM - DESCRIÇÃO | NOTA --> 
+
+        <!-- INICIO - CONTEUDOS DE LISTAS -->           
         <div fxLayout="row wrap">
             <mat-form-field appearance="outline">
                 <mat-label>Grupo</mat-label>
@@ -63,6 +71,9 @@
                 <input matInput [(ngModel)]="finance.instituicao_financeira" name="instituicao_financeira" disabled>
             </mat-form-field>   
         </div>      
+        <!-- FIM - CONTEUDOS DE LISTAS -->        
+
+        <!-- INICIO - RENDA | GASTOS -->         
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Renda</mat-label>
@@ -73,6 +84,17 @@
                 <input matInput [(ngModel)]="finance.gastos" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="gastos" disabled>
             </mat-form-field>   
         </div>
+        <!-- FIM - RENDA | GASTOS --> 
+
+        <!-- INICIO - TAGS -->   
+        <mat-form-field appearance="outline">
+            <mat-chip-list [(ngModel)]="finance.tags" [ngModelOptions]="{standalone: true}" disabled>
+                <mat-chip *ngFor="let tag of tags">
+                    {{tag}}
+                </mat-chip>                
+            </mat-chip-list>
+        </mat-form-field>
+        <!-- FIM - TAGS -->               
     </form>
     <button mat-raised-button (click)="deleteFinance()" color="warn">
         Deletar

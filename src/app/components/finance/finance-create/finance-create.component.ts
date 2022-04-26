@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core'; //TAG
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core'; //TAG
 import { Finance } from './../finance.model';
 import { FinanceService } from './../finance.service';
 import { Router } from '@angular/router';
@@ -90,7 +90,6 @@ export class FinanceCreateComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/finances'])
   }
-
 
   //> TAG
   add(event: MatChipInputEvent): void {

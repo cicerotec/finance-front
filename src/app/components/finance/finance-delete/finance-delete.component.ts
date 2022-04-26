@@ -24,6 +24,8 @@ export class FinanceDeleteComponent implements OnInit {
     tags: []
   }
 
+  tags: any[] = [];
+
   constructor(
     private financeService: FinanceService,
     private router: Router,
@@ -34,6 +36,7 @@ export class FinanceDeleteComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')
     this.financeService.readById(id).subscribe(finance => {
       this.finance = finance
+      this.tags = finance.tags
     })
   }
 

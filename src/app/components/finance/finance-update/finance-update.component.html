@@ -3,6 +3,8 @@
         Atualizar Registro
     </mat-card-title>
     <form action="">
+
+        <!-- INICIO - DATAS -->           
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Data de referência</mat-label>
@@ -37,7 +39,10 @@
                 <mat-datepicker-toggle matSuffix [for]="$any(pickerPay)"></mat-datepicker-toggle>
                 <ngx-mat-datetime-picker #pickerPay color="warn" [showSeconds]="true"></ngx-mat-datetime-picker>
             </mat-form-field>
-        </div>        
+        </div>  
+        <!-- FIM - DATAS -->         
+        
+        <!-- INICIO - DESCRIÇÃO | NOTA --> 
         <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
             <input matInput [(ngModel)]="finance.descricao" name="descricao">
@@ -46,8 +51,9 @@
             <mat-label>Nota</mat-label>
             <textarea matInput [(ngModel)]="finance.nota" name="nota"></textarea>
         </mat-form-field> 
+        <!-- FIM - DESCRIÇÃO | NOTA --> 
 
-        <!-- INICIO - CONTEUDOS DE LISTAS -->        
+        <!-- INICIO - CONTEUDOS DE LISTAS -->       
         <div fxLayout="row wrap">
             <mat-form-field appearance="outline">
                 <mat-label>Grupo</mat-label>
@@ -74,8 +80,9 @@
                </mat-select>
             </mat-form-field>   
         </div>  
-        <!-- FIM - CONTEUDOS DE LISTAS -->
+        <!-- FIM - CONTEUDOS DE LISTAS -->        
 
+        <!-- INICIO - RENDA | GASTOS --> 
         <div>
             <mat-form-field appearance="outline">
                 <mat-label>Renda</mat-label>
@@ -86,6 +93,36 @@
                 <input matInput [(ngModel)]="finance.gastos" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" name="gastos">
             </mat-form-field>   
         </div>
+        <!-- FIM - RENDA | GASTOS --> 
+
+        <!-- INICIO - TAGS --> 
+        <mat-form-field appearance="outline">
+            <mat-chip-list #chipList [(ngModel)]="finance.tags" [ngModelOptions]="{standalone: true}">
+              <mat-chip
+                *ngFor="let tag of tags"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(tag)">
+                {{tag}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Selecione ou insira tag..."
+                #tagInput
+                [formControl]="tagCtrl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)">
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+                {{tag}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        <!-- FIM - TAGS --> 
+                        
     </form>
     <button mat-raised-button (click)="updateFinance()" color="primary">
         Atualizar
