@@ -2,38 +2,43 @@
   <mat-card>
     <mat-card-title>
       Pesquisa
-  </mat-card-title>
-  <div fxLayout="row" fxLayoutGap="10">
+    </mat-card-title>
+    <div fxLayout="row" fxLayoutGap="10">
+      <div>
+        <mat-form-field appearance="outline">
+          <mat-label>Por id</mat-label>
+          <input matInput placeholder="Insira o id" name="id" [(ngModel)]="id">
+          <button matSuffix mat-button (click)="searchId()" class="button-pesquisa">
+            <mat-icon matSuffix>search</mat-icon>
+          </button>
+        </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Por id</mat-label>
-            <input matInput placeholder="Insira o id" name="id" [(ngModel)]="id">
-            <button matSuffix mat-button (click)="searchId()" class="pesquisa">
-              <mat-icon matSuffix>search</mat-icon>
-            </button>            
-          </mat-form-field>
+        <mat-form-field appearance="outline">
+          <button matSuffix mat-button class="button-pesquisa" (click)="monthBackward()" matTooltip="Pesquisa mês anterior">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+          <mat-label>Por data de referência</mat-label>
+          <mat-date-range-input [rangePicker]="pickerRef">
+            <input matStartDate placeholder="Inicial" [(ngModel)]="data_de_referencia">
+            <input matEndDate placeholder="Final" [(ngModel)]="data_de_referencia_final"
+              (dateChange)="searchDataReferencia()">
+          </mat-date-range-input>
+          <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
+          <mat-date-range-picker #pickerRef></mat-date-range-picker>
+          <button matSuffix mat-button class="button-pesquisa" (click)="monthForward()" matTooltip="Pesquisa mês posterior">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div>
 
-          <mat-form-field appearance="outline">
-            <button matSuffix mat-button class="pesquisa" (click)="monthBackward()" matTooltip="Pesquisa mês anterior">
-              <mat-icon>chevron_left</mat-icon>
-            </button>
-            <mat-label>Por data de referência</mat-label>
-            <mat-date-range-input [rangePicker]="pickerRef">
-              <input matStartDate placeholder="Inicial" [(ngModel)]="data_de_referencia">
-              <input matEndDate placeholder="Final" [(ngModel)]="data_de_referencia_final" (dateChange)="searchDataReferencia()">
-            </mat-date-range-input>
-            <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
-            <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
-            <mat-date-range-picker #pickerRef></mat-date-range-picker>
-            <button matSuffix mat-button class="pesquisa" (click)="monthForward()" matTooltip="Pesquisa mês posterior"> 
-              <mat-icon>chevron_right</mat-icon>
-            </button>   
-          </mat-form-field>
+      </div>
 
-  </div>
-</mat-card>
+    </div>
+  </mat-card>
   <div>
-    <table mat-table [dataSource]="finances">
+    <table class="table-resultado" mat-table [dataSource]="finances">
 
       <!-- id column -->
       <ng-container matColumnDef="id">
@@ -75,7 +80,7 @@
       <ng-container matColumnDef="nota">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let row">
-          <button mat-stroked-button class="nota" matTooltip={{row.nota}} *ngIf="row.nota != null">nota</button>
+          <button mat-stroked-button class="button-nota" matTooltip={{row.nota}} *ngIf="row.nota != null">nota</button>
         </td>
       </ng-container>
 

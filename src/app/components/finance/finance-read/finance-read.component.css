@@ -1,4 +1,4 @@
-table {
+.table-resultado {
     width: 100%;
 }
 
@@ -6,7 +6,12 @@ th, td {
     font-size: 0.6rem;
 }
 
-.pesquisa {
+.mat-table {
+    border-collapse:separate;
+    border-spacing: 10px 5px;
+}
+
+.button-pesquisa {
     width: 30px!important;
     min-width: unset!important;
     display: inline-flex;
@@ -34,7 +39,7 @@ th, td {
     width: 60px;
 }
 
-.nota {
+.button-nota {
     font-size: 0.6rem;
     width: 30px!important;
     min-width: unset!important;
