@@ -1,7 +1,9 @@
+import { ConfirmDialogComponent } from './../../confirm/confirm-dialog/confirm-dialog.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FinanceService } from './../finance.service';
 import { Finance } from './../finance.model';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-finance-delete',
@@ -29,7 +31,8 @@ export class FinanceDeleteComponent implements OnInit {
   constructor(
     private financeService: FinanceService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog    
   ) { }
 
   ngOnInit(): void {
@@ -51,5 +54,14 @@ export class FinanceDeleteComponent implements OnInit {
   cancel(): void {
     this.router.navigate(['/finances'])
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteFinance()
+      }
+    });
+  }  
 
 }

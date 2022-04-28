@@ -83,7 +83,7 @@ export class FinanceCreateComponent implements OnInit {
     this.finance.tags = tags
     this.financeService.create(this.finance).subscribe(() => {
       this.financeService.showMessage('Evento registrado!')
-      this.router.navigate(['/'])
+      this.router.navigate(['/finances'])
     })
   }
 

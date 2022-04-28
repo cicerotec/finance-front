@@ -38,8 +38,9 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
-
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ConfirmDialogComponent } from './components/confirm/confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 registerLocaleData(localePt);
 
@@ -56,7 +57,8 @@ registerLocaleData(localePt);
     FinanceCreateComponent,
     FinanceReadComponent,
     FinanceUpdateComponent,
-    FinanceDeleteComponent
+    FinanceDeleteComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -86,7 +88,8 @@ registerLocaleData(localePt);
     MatIconModule,
     MatSelectModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [{
     provide: LOCALE_ID,
