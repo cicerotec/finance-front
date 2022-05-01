@@ -1,14 +1,24 @@
+.mat-list-item {
+    font-size: 0.6rem;
+    margin-top: 5px;
+}
+
+.toggle-nome {
+    color: #dbb81d;
+}
+
+.toggle-valor {
+    font-size: 0.8rem;
+}
+
 .table-resultado {
     width: 100%;
+    border-collapse:separate;
+    border-spacing: 10px 5px;    
 }
 
 th, td {
     font-size: 0.6rem;
-}
-
-.mat-table {
-    border-collapse:separate;
-    border-spacing: 10px 5px;
 }
 
 .button-pesquisa {
@@ -26,13 +36,6 @@ th, td {
 .mat-form-field {
     font-size: 0.8rem!important;
     margin-right: 30px;
-}
-
-.id > i {
-    margin-top: 8px;
-    width: 20px;
-    color: white;
-    font-size: 0.8rem;
 }
 
 .datas {

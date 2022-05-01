@@ -1,8 +1,11 @@
 import { HttpParams } from '@angular/common/http';
 import { FinanceService } from './../finance.service';
 import { Finance } from './../finance.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatAccordion } from '@angular/material/expansion';
+import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
+import { BottomSheetComponent } from '../../bottom-sheet/bottom-sheet.component';
 
 @Component({
   selector: 'app-finance-read',
@@ -11,11 +14,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FinanceReadComponent implements OnInit {
 
+  @ViewChild(MatAccordion) accordion: MatAccordion | undefined;  
+
+  instituicoes = [
+      {'nome':'ITAU', 'valor' : 500 }
+    ,{'nome':'NUBANK', 'valor' : 600 }
+    ,{'nome':'C6BANK', 'valor' : 700 }
+    ,{'nome':'INTER', 'valor' : 800 }
+    ,{'nome':'SANTANDER', 'valor' : 900 }
+    ,{'nome':'SODEXO-REF-IBM','valor' : 100}
+    ,{'nome':'SODEXO-ALI-IBM', 'valor' : 200 }
+  ];
+  colunas = ['nome','valor'];
+
+
   nada_encontrado = "Nenhum registro encontrado!"
 
   finances: Finance[] = [];
   displayedColumns = [
-    'id', 
     'data_de_referencia', 
     'data_do_evento', 
     'data_do_pagamento', 
@@ -37,7 +53,8 @@ export class FinanceReadComponent implements OnInit {
   constructor(
     private financeService: FinanceService,
     private router: Router,
-    private route: ActivatedRoute    
+    private route: ActivatedRoute,
+    private _bottomSheet: MatBottomSheet
   ) { }
 
   ngOnInit(): void {
@@ -105,6 +122,10 @@ export class FinanceReadComponent implements OnInit {
     console.log("monthBackward data inicial "+this.data_de_referencia)
     console.log("monthBackward data final "+this.data_de_referencia)    
     this.searchDataReferencia()
+  }
+
+  openBottomSheet(): void {
+    this._bottomSheet.open(BottomSheetComponent);
   }
 
 

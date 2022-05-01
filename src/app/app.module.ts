@@ -41,6 +41,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ConfirmDialogComponent } from './components/confirm/confirm-dialog/confirm-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 registerLocaleData(localePt);
 
@@ -58,7 +63,8 @@ registerLocaleData(localePt);
     FinanceReadComponent,
     FinanceUpdateComponent,
     FinanceDeleteComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    BottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +95,11 @@ registerLocaleData(localePt);
     MatSelectModule,
     MatChipsModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule,
+    CdkAccordionModule,
+    MatExpansionModule,
+    MatBottomSheetModule
   ],
   providers: [{
     provide: LOCALE_ID,
