@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
 import { BottomSheetComponent } from '../../bottom-sheet/bottom-sheet.component';
+import { SaldoService } from '../../saldo/saldo.service';
+import { Saldo } from '../../saldo/saldo.model';
 
 @Component({
   selector: 'app-finance-read',
@@ -16,19 +18,13 @@ export class FinanceReadComponent implements OnInit {
 
   @ViewChild(MatAccordion) accordion: MatAccordion | undefined;  
 
-  instituicoes = [
-      {'nome':'ITAU', 'valor' : 500 }
-    ,{'nome':'NUBANK', 'valor' : 600 }
-    ,{'nome':'C6BANK', 'valor' : 700 }
-    ,{'nome':'INTER', 'valor' : 800 }
-    ,{'nome':'SANTANDER', 'valor' : 900 }
-    ,{'nome':'SODEXO-REF-IBM','valor' : 100}
-    ,{'nome':'SODEXO-ALI-IBM', 'valor' : 200 }
-  ];
-  colunas = ['nome','valor'];
+  isShowingSidenav: boolean | undefined;
 
+  saldos: Saldo[] = [];
+  colunas = ['instituicao_financeira','saldo'];
 
   nada_encontrado = "Nenhum registro encontrado!"
+  saldo_nao_encontrado = "Nenhum saldo encontrado para o mês vigente!"
 
   finances: Finance[] = [];
   displayedColumns = [
@@ -52,6 +48,7 @@ export class FinanceReadComponent implements OnInit {
 
   constructor(
     private financeService: FinanceService,
+    private saldoService: SaldoService,
     private router: Router,
     private route: ActivatedRoute,
     private _bottomSheet: MatBottomSheet
@@ -81,30 +78,62 @@ export class FinanceReadComponent implements OnInit {
       && typeof this.data_de_referencia_final!='undefined' 
       && this.data_de_referencia_final) {
 
-        let params = new HttpParams()
+        let paramsFinance = new HttpParams()
           .set('data_de_referencia', this.data_de_referencia.toISOString())
           .set('data_de_referencia_final', this.data_de_referencia_final.toISOString())
-        //console.log(params)             
 
-        this.financeService.readByParams(params).subscribe(finances => {
-        this.finances = []
-        this.finances = finances
-        //console.log(this.finances)   
-      }, error => {
-        this.financeService.showMessage(this.nada_encontrado)
-      })
+        console.log('buscando finance...')          
+        this.financeService.readByParams(paramsFinance).subscribe(finances => {
+          this.finances = []
+          this.finances = finances
+
+          console.log('finance encontrado......')
+          console.log('buscando saldo...')
+          this.searchSaldo();
+        }, error => {
+          console.log('finance NÃO encontrado...')
+          this.financeService.showMessage(this.nada_encontrado)
+        })
     }
   }  
 
+  searchSaldo(): void {
+
+    let paramsSaldo = new HttpParams()
+      .set('data_de_referencia', this.data_de_referencia.toISOString())
+      .set('data_de_referencia_final', this.data_de_referencia_final.toISOString())
+
+    this.saldoService.readByParams(paramsSaldo).subscribe(saldos => {
+      this.saldos = []
+      this.saldos = saldos
+      console.log('saldo encontrado...')
+
+    }, error => {
+      console.log('saldo NÃO encontrado...')
+      this.saldos = []
+      if(this.isShowingSidenav) {
+        this.saldoService.showMessage(this.saldo_nao_encontrado)
+        this.toggleSidenav()
+      }
+    })
+
+  }
+
+  toggleSidenav() {
+    this.isShowingSidenav = !this.isShowingSidenav;
+ }
+
   getFirstDayOfMonth(): Date {
     let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    //let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+    let firstDay = new Date(date.getFullYear(), date.getMonth() - 1, 1);
     return firstDay
   }
 
   getLastDayOfMonth(): Date {
     let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);    
+    //let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);    
+    let lastDay = new Date(date.getFullYear(), date.getMonth(), 0);        
     return lastDay
   }
   

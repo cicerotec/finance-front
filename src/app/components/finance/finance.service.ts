@@ -16,7 +16,7 @@ export class FinanceService {
   constructor(private snackBar: MatSnackBar, private http: HttpClient) { }
 
   showMessage(msg: string): void {
-    this.snackBar.open(msg, '', {
+    this.snackBar.open(msg, 'X', {
       duration: 3000,
       horizontalPosition: "center",
       verticalPosition: "top"

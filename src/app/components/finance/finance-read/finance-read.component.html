@@ -1,7 +1,7 @@
 <div class="mat-elevation-z4">
 
   <mat-drawer-container class="example-container">
-    <mat-drawer #sideNav mode="side" opened="true" position="end">
+    <mat-drawer #sideNav mode="side" [opened]="isShowingSidenav" position="end">
 
       <!-- toggle instituicoes -->
       <div>
@@ -9,37 +9,12 @@
         <mat-list>
           <h3 matLine style="text-align: center;"> Saldos </h3>
           <mat-divider></mat-divider>
-          <mat-list-item *ngFor="let instituicao of instituicoes">
-            <p matLine class="toggle-nome"> {{instituicao.nome}} </p>
-            <p matLine class="toggle-valor"> {{instituicao.valor | currency: 'BRL'}} </p>
+          <mat-list-item *ngFor="let saldo of saldos">
+            <p matLine class="toggle-nome"> {{saldo.nome}} </p>
+            <p matLine class="toggle-valor"> {{saldo.valor | currency: 'BRL'}} </p>
           </mat-list-item>
         </mat-list>
 
-        <!--
-        <mat-list>
-          <h3 style="text-align: center;">Saldos</h3>
-          <mat-divider></mat-divider>
-          <mat-list-item *ngFor="let instituicao of instituicoes">
-            <div>
-              <p>{{instituicao.nome}}</p>
-              <p>{{instituicao.valor | currency: 'BRL'}}</p>
-            </div>
-          </mat-list-item>
-          <mat-divider></mat-divider>
-        </mat-list>
-        -->
-
-        <!--
-        <table class="table-instituicoes" mat-table [dataSource]="instituicoes">
-          <ng-container matColumnDef="nome">
-            <td class="mat-cell-instituicoes" mat-cell *matCellDef="let row" align="right">{{row.nome}}</td>
-          </ng-container>
-          <ng-container matColumnDef="valor">
-            <td class="mat-cell-instituicoes" mat-cell *matCellDef="let row">{{row.valor}}</td>
-          </ng-container>
-          <tr mat-row *matRowDef="let row; columns: colunas;"></tr>
-        </table>
-        -->
       </div>
 
     </mat-drawer>
@@ -71,7 +46,7 @@
           </button>
         </mat-form-field>
 
-        <button mat-stroked-button (click)="sideNav.toggle()">Open</button>
+        <button mat-stroked-button (click)="toggleSidenav()">Saldos</button>
 
       </mat-card>
 
@@ -169,8 +144,6 @@
         </table>
 
       </div>
-
-      <button mat-button>Toggle SideNav</button>
 
     </mat-drawer-content>
   </mat-drawer-container>
