@@ -46,6 +46,41 @@
           </button>
         </mat-form-field>
 
+        <!-- INICIO - DESCRIÇÃO --> 
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição</mat-label>
+          <input matInput [(ngModel)]="descricao" name="descricao">
+        </mat-form-field>  
+        <!-- FIM - DESCRIÇÃO --> 
+
+        <!-- INICIO - TAGS --> 
+        <mat-form-field appearance="outline" class="tags">
+          <mat-chip-list #chipList [(ngModel)]="tags" [ngModelOptions]="{standalone: true}">
+            <mat-chip
+              *ngFor="let tag of tags"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(tag)">
+              {{tag}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Selecione ou insira tag..."
+              #tagInput
+              [formControl]="tagCtrl"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+              {{tag}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      <!-- FIM - TAGS --> 
+
         <button mat-stroked-button (click)="toggleSidenav()">Saldos</button>
 
       </mat-card>
@@ -127,12 +162,17 @@
             <th mat-header-cell *matHeaderCellDef>Ações</th>
             <td mat-cell *matCellDef="let row">
               <a routerLink="/finances/update/{{ row.id }}" class="edit">
-                <i class="material-icons">
+                <i matTooltip="editar" class="material-icons">
                   edit
                 </i>
               </a>
+              <a routerLink="/finances/create/{{ row.id }}" class="add">
+                <i matTooltip="adicionar" class="material-icons">
+                  replay_circle_filled
+                </i>
+              </a>
               <a routerLink="/finances/delete/{{ row.id }}" class="delete">
-                <i class="material-icons">
+                <i matTooltip="deletar" class="material-icons">
                   delete
                 </i>
               </a>

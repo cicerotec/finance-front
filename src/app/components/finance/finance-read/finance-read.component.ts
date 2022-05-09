@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { FinanceService } from './../finance.service';
 import { Finance } from './../finance.model';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core'; //TAG
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatAccordion } from '@angular/material/expansion';
 import { MatBottomSheet, MatBottomSheetRef} from '@angular/material/bottom-sheet';
@@ -9,12 +9,37 @@ import { BottomSheetComponent } from '../../bottom-sheet/bottom-sheet.component'
 import { SaldoService } from '../../saldo/saldo.service';
 import { Saldo } from '../../saldo/saldo.model';
 
+//> TAG
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormControl } from '@angular/forms';
+import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { ConteudoService } from '../../conteudo/conteudo.service';
+//< TAG
+
 @Component({
   selector: 'app-finance-read',
   templateUrl: './finance-read.component.html',
   styleUrls: ['./finance-read.component.css']
 })
 export class FinanceReadComponent implements OnInit {
+
+  //> TAG
+  visible = true;
+  selectable = true;
+  removable = true;
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  tagCtrl = new FormControl();
+  filteredTags: Observable<string[]> | undefined;
+  tags: any[] = [];
+  allTags: string[] = [];
+
+  @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement> | undefined;
+  @ViewChild('auto') matAutocomplete: MatAutocomplete | undefined;
+  //< TAG  
 
   @ViewChild(MatAccordion) accordion: MatAccordion | undefined;  
 
@@ -42,34 +67,32 @@ export class FinanceReadComponent implements OnInit {
     'action'
   ]
 
-  id: string | undefined
   data_de_referencia!: Date;
   data_de_referencia_final!: Date
+  descricao!: string;
 
   constructor(
     private financeService: FinanceService,
     private saldoService: SaldoService,
     private router: Router,
     private route: ActivatedRoute,
-    private _bottomSheet: MatBottomSheet
-  ) { }
+    private _bottomSheet: MatBottomSheet,
+    private conteudoService: ConteudoService
+  ) {
+      //> TAG
+      this.filteredTags = this.tagCtrl.valueChanges.pipe(
+        startWith(null),
+        map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
+      //< TAG 
+   }
 
   ngOnInit(): void {
     this.data_de_referencia = this.getFirstDayOfMonth()
     this.data_de_referencia_final = this.getLastDayOfMonth()
     this.searchDataReferencia()
-  }
-
-  searchId(): void {
-    if(typeof this.id!='undefined' && this.id) {
-      this.financeService.readById(this.id).subscribe(finance => {
-        this.finances = []
-        this.finances[0] = finance
-        console.log(this.finances[0])   
-      }, error => {
-        this.financeService.showMessage(this.nada_encontrado)
-      })
-    }
+    this.conteudoService.readByTipoResultValor('tag').subscribe((allTagsBackend: string[]) => {
+      this.allTags = allTagsBackend
+    })    
   }
 
   searchDataReferencia(): void {
@@ -82,16 +105,12 @@ export class FinanceReadComponent implements OnInit {
           .set('data_de_referencia', this.data_de_referencia.toISOString())
           .set('data_de_referencia_final', this.data_de_referencia_final.toISOString())
 
-        console.log('buscando finance...')          
         this.financeService.readByParams(paramsFinance).subscribe(finances => {
           this.finances = []
           this.finances = finances
 
-          console.log('finance encontrado......')
-          console.log('buscando saldo...')
           this.searchSaldo();
         }, error => {
-          console.log('finance NÃO encontrado...')
           this.financeService.showMessage(this.nada_encontrado)
         })
     }
@@ -106,10 +125,8 @@ export class FinanceReadComponent implements OnInit {
     this.saldoService.readByParams(paramsSaldo).subscribe(saldos => {
       this.saldos = []
       this.saldos = saldos
-      console.log('saldo encontrado...')
 
     }, error => {
-      console.log('saldo NÃO encontrado...')
       this.saldos = []
       if(this.isShowingSidenav) {
         this.saldoService.showMessage(this.saldo_nao_encontrado)
@@ -157,5 +174,45 @@ export class FinanceReadComponent implements OnInit {
     this._bottomSheet.open(BottomSheetComponent);
   }
 
+  //> TAG
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    // Add our tag
+    if ((value || '').trim()) {
+      this.tags.push(value.trim());
+    }
+
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+
+    this.tagCtrl.setValue(null);
+  }
+
+  remove(tag: string): void {
+    const index = this.tags.indexOf(tag);
+
+    if (index >= 0) {
+      this.tags.splice(index, 1);
+    }
+  }
+
+  selected(event: MatAutocompleteSelectedEvent): void {
+    this.tags.push(event.option.viewValue);
+    if (typeof this.tagInput != 'undefined') {
+      this.tagInput.nativeElement.value = '';
+    }
+    this.tagCtrl.setValue(null);
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.allTags.filter(tag => tag.toLowerCase().indexOf(filterValue) === 0);
+  }
+  //< TAG  
 
 }

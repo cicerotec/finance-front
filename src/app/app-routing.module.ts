@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: "finances/create",
     component: FinanceCreateComponent
+  },  
+  {
+    path: "finances/create/:id",
+    component: FinanceCreateComponent
   },
   {
     path: "finances/update/:id",

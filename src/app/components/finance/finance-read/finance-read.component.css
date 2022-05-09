@@ -42,6 +42,11 @@ th, td {
     width: 60px;
 }
 
+.tags {
+    width: 280px;
+       font-size: 0.8rem!important;
+}
+
 .button-nota {
     font-size: 0.6rem;
     width: 30px!important;
@@ -53,16 +58,20 @@ th, td {
     align-items: center;
 }
 
-.edit {
+.edit > i {
     margin-right: 5px;
+    color: #dbb81d;
+    font-size: 1rem;  
 }
 
-.edit > i {
-    color: #dbb81d;
-    font-size: 0.8rem;  
+.add > i {
+    margin-right: 5px;    
+    color: #3f51b5;
+    font-size: 1rem;      
 }
 
 .delete > i {
+    margin-right: 5px;
     color: #ca182a;
-    font-size: 0.8rem;      
+    font-size: 1rem;      
 }

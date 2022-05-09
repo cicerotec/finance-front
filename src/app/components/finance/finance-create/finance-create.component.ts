@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core'; //TAG
 import { Finance } from './../finance.model';
 import { FinanceService } from './../finance.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConteudoService } from '../../conteudo/conteudo.service';
 
 //> TAG
@@ -56,6 +56,7 @@ export class FinanceCreateComponent implements OnInit {
   constructor(
     private financeService: FinanceService,
     private router: Router,
+    private route: ActivatedRoute,
     private conteudoService: ConteudoService) { 
       //> TAG
       this.filteredTags = this.tagCtrl.valueChanges.pipe(
@@ -65,6 +66,14 @@ export class FinanceCreateComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id')
+    this.financeService.readById(id).subscribe(finance => {
+      this.finance = finance
+      this.finance.data_de_referencia = new Date();
+      this.finance.data_do_evento = new Date();
+      this.finance.data_do_pagamento = new Date();
+      this.tags = finance.tags
+    })    
     this.conteudoService.readByTipo('status').subscribe((status: any) => {
       this.status = status
     })
