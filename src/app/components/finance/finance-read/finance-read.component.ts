@@ -136,9 +136,29 @@ export class FinanceReadComponent implements OnInit {
 
   }
 
+  searchParams(): void {
+    
+    let params = new HttpParams();
+    
+    if (this.descricao) {
+      params = params.append('descricao', this.descricao);
+    }
+    
+    if (this.tags) {
+      params = params.append('tags',this.tags.toString());
+    }
+    
+    this.financeService.readByParams(params).subscribe(finances => {
+      this.finances = []
+      this.finances = finances
+    }, error => {
+      this.financeService.showMessage(this.nada_encontrado)
+    })
+  }
+
   toggleSidenav() {
     this.isShowingSidenav = !this.isShowingSidenav;
- }
+  }
 
   getFirstDayOfMonth(): Date {
     let date = new Date(), y = date.getFullYear(), m = date.getMonth();

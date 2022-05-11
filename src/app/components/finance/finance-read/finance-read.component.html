@@ -27,7 +27,7 @@
         </mat-card-title>
 
         <mat-form-field appearance="outline">
-          <button matSuffix mat-button class="button-pesquisa" (click)="monthBackward()"
+          <button matSuffix mat-button class="button-mes-anterior-posterior" (click)="monthBackward()"
             matTooltip="Pesquisa mês anterior">
             <mat-icon>chevron_left</mat-icon>
           </button>
@@ -40,7 +40,7 @@
           <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
           <mat-date-range-picker #pickerRef></mat-date-range-picker>
-          <button matSuffix mat-button class="button-pesquisa" (click)="monthForward()"
+          <button matSuffix mat-button class="button-mes-anterior-posterior" (click)="monthForward()"
             matTooltip="Pesquisa mês posterior">
             <mat-icon>chevron_right</mat-icon>
           </button>
@@ -81,8 +81,10 @@
         </mat-form-field>
       <!-- FIM - TAGS --> 
 
-        <button mat-stroked-button (click)="toggleSidenav()">Saldos</button>
-
+      <!-- INICIO - BOTOES --> 
+      <button mat-raised-button color="primary" (click)="searchParams()" class="button-pesquisar">Pesquisar</button>
+      <button mat-raised-button color="accent" (click)="toggleSidenav()" class="button-saldo">Saldos</button>
+      <!-- INICIO - BOTOES -->         
       </mat-card>
 
       <div>

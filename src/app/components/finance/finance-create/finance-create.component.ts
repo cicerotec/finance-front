@@ -69,6 +69,7 @@ export class FinanceCreateComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id')
     this.financeService.readById(id).subscribe(finance => {
       this.finance = finance
+      this.finance.id = "";
       this.finance.data_de_referencia = new Date();
       this.finance.data_do_evento = new Date();
       this.finance.data_do_pagamento = new Date();
