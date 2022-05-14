@@ -139,6 +139,14 @@ export class FinanceReadComponent implements OnInit {
   searchParams(): void {
     
     let params = new HttpParams();
+
+    if(typeof this.data_de_referencia!='undefined' 
+      && this.data_de_referencia
+      && typeof this.data_de_referencia_final!='undefined' 
+      && this.data_de_referencia_final) {
+        params = params.append('data_de_referencia', this.data_de_referencia.toISOString())
+        params = params.append('data_de_referencia_final', this.data_de_referencia_final.toISOString())
+    }
     
     if (this.descricao) {
       params = params.append('descricao', this.descricao);
@@ -148,12 +156,15 @@ export class FinanceReadComponent implements OnInit {
       params = params.append('tags',this.tags.toString());
     }
     
-    this.financeService.readByParams(params).subscribe(finances => {
-      this.finances = []
-      this.finances = finances
-    }, error => {
-      this.financeService.showMessage(this.nada_encontrado)
-    })
+    if (params) {
+      console.log("buscando por parametros: " + params)
+      this.financeService.readByParams(params).subscribe(finances => {
+        this.finances = []
+        this.finances = finances
+      }, error => {
+        this.financeService.showMessage(this.nada_encontrado)
+      })
+    }
   }
 
   toggleSidenav() {

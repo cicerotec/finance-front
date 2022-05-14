@@ -46,6 +46,7 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { BottomSheetComponent } from './components/bottom-sheet/bottom-sheet.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { SidenavService } from './components/sidenav/sidenav.service';
 
 registerLocaleData(localePt);
 
@@ -101,10 +102,12 @@ registerLocaleData(localePt);
     MatExpansionModule,
     MatBottomSheetModule
   ],
-  providers: [{
-    provide: LOCALE_ID,
-    useValue: 'pt-BR'
-  }],
+  providers: [
+    SidenavService,
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

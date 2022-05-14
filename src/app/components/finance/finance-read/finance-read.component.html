@@ -34,8 +34,7 @@
           <mat-label>Por data de referência</mat-label>
           <mat-date-range-input [rangePicker]="pickerRef">
             <input matStartDate placeholder="Inicial" [(ngModel)]="data_de_referencia">
-            <input matEndDate placeholder="Final" [(ngModel)]="data_de_referencia_final"
-              (dateChange)="searchDataReferencia()">
+            <input matEndDate placeholder="Final" [(ngModel)]="data_de_referencia_final">
           </mat-date-range-input>
           <mat-hint>dd/mm/aaaa – dd/mm/aaaa</mat-hint>
           <mat-datepicker-toggle matSuffix [for]="pickerRef"></mat-datepicker-toggle>
@@ -84,7 +83,7 @@
       <!-- INICIO - BOTOES --> 
       <button mat-raised-button color="primary" (click)="searchParams()" class="button-pesquisar">Pesquisar</button>
       <button mat-raised-button color="accent" (click)="toggleSidenav()" class="button-saldo">Saldos</button>
-      <!-- INICIO - BOTOES -->         
+      <!-- FIM - BOTOES -->         
       </mat-card>
 
       <div>

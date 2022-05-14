@@ -9,14 +9,9 @@
     text-decoration: none;
 }
 
-.header .logo {
-    max-height: 32px;
-}
-
-.header .title-group {
-    padding-left: 25px;
-}
-
-.header .title-group i {
-    padding-right: 5px;
+.title-control {
+    margin: 12px;
+    color: yellow;
+    font-size: 1.1rem;
+    font-style: italic;
 }

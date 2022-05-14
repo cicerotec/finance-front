@@ -7,6 +7,6 @@
 </div>
 -->
 
-<app-header></app-header>
-<app-nav></app-nav>
+<app-header (sidenavToggle)="clickMenu()"></app-header>
+<app-nav [sidenavLayout]="openMenu"></app-nav>
 <app-footer></app-footer>
