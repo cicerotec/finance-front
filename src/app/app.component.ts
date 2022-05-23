@@ -9,7 +9,7 @@ export class AppComponent {
 
   title = 'finance-front';
 
-  openMenu = false;
+  openMenu = true;
   clickMenu() {
     this.openMenu = !this.openMenu;
     this.sidenavLayoutToggle.emit(this.openMenu);

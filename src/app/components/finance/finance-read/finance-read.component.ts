@@ -101,9 +101,14 @@ export class FinanceReadComponent implements OnInit {
       && typeof this.data_de_referencia_final!='undefined' 
       && this.data_de_referencia_final) {
 
+        let start = new Date(this.data_de_referencia)
+        let end = new Date(this.data_de_referencia_final)
+        start.setUTCHours(0,0,0,0)
+        end.setUTCHours(23,59,59,999)
+        
         let paramsFinance = new HttpParams()
-          .set('data_de_referencia', this.data_de_referencia.toISOString())
-          .set('data_de_referencia_final', this.data_de_referencia_final.toISOString())
+          .set('data_de_referencia', start.toISOString())
+          .set('data_de_referencia_final', end.toISOString())
 
         this.financeService.readByParams(paramsFinance).subscribe(finances => {
           this.finances = []
@@ -173,15 +178,13 @@ export class FinanceReadComponent implements OnInit {
 
   getFirstDayOfMonth(): Date {
     let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    //let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-    let firstDay = new Date(date.getFullYear(), date.getMonth() - 1, 1);
+    let firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
     return firstDay
   }
 
   getLastDayOfMonth(): Date {
     let date = new Date(), y = date.getFullYear(), m = date.getMonth();
-    //let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);    
-    let lastDay = new Date(date.getFullYear(), date.getMonth(), 0);        
+    let lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0);    
     return lastDay
   }
   

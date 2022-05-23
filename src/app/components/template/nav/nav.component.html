@@ -1,19 +1,19 @@
 <mat-sidenav-container class="container">
     <mat-sidenav #sidenav class="sidenav" mode="side" [opened]="sidenavLayout" fixedInViewport="true"fixedTopGap=64>
         <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="/">
+            <a mat-list-item routerLink="/" (click)="onToggleSidenav()">
                 <i class="material-icons">
                     home
                 </i>
                 Início
             </a>
-            <a mat-list-item routerLink="/finances/create">
+            <a mat-list-item routerLink="/finances/create" (click)="onToggleSidenav()">
                 <i class="material-icons">
                     description
                 </i>
                 Cadastro
             </a>            
-            <a mat-list-item routerLink="/finances">
+            <a mat-list-item routerLink="/finances" (click)="onToggleSidenav()">
                 <i class="material-icons">
                     search
                 </i>

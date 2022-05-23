@@ -8,5 +8,5 @@
 -->
 
 <app-header (sidenavToggle)="clickMenu()"></app-header>
-<app-nav [sidenavLayout]="openMenu"></app-nav>
+<app-nav [sidenavLayout]="openMenu" (sidenavToggle)="clickMenu()"></app-nav>
 <app-footer></app-footer>
