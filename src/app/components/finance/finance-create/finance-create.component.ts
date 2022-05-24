@@ -87,6 +87,7 @@ export class FinanceCreateComponent implements OnInit {
     this.conteudoService.readByTipoResultValor('tag').subscribe((allTagsBackend: string[]) => {
       this.allTags = allTagsBackend
     })
+    console.log("ngOnInit: "+this.finance.data_de_referencia)
   }
 
   createFinance(tags: string[]): void {
